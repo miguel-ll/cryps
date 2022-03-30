@@ -1,3 +1,4 @@
+# depends on rate.sx
 from flask import Flask
 import requests
 import re
