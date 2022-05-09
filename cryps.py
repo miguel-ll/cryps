@@ -9,7 +9,7 @@ app = Flask(__name__)
 def default():
     return "<h1>Example:  url/btc</h1><h2>If you want to see the list of supported cryptocurrencies, go to url/list.</h2>"
 
-@app.route('/<cryptocoin>')
+@app.route('/<cryptocoin>', methods=['GET'])
 def crypto(cryptocoin):
     url = f"http://rate.sx/{cryptocoin}?T"
     resp = requests.get(url).text
@@ -39,7 +39,7 @@ def crypto(cryptocoin):
     change_perc = avg_med.split()[8][:-1][1:]
     return {"name": name, "begin_price": begin_price, "date_begin": date_begin, "end_price": end_price, "date_end": date_end, "highest_price": highest_price, "date_highest": date_highest, "lowest_price": lowest_price, "date_lowest": date_lowest, "average": average, "median": median, "change_value": change_value, "change_perc": change_perc} 
 
-@app.route('/list')
+@app.route('/list', methods=['GET'])
 def list():
     import json
     url = "http://rate.sx/:coins"
